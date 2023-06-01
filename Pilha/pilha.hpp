@@ -10,7 +10,7 @@ public:
     ~Pilha();
     void empilhar(char valor);
     void desempilhar();
-    int topo();
+    char topo();
     bool vazio();
     bool cheio();
 
