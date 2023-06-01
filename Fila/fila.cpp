@@ -1,22 +1,24 @@
 #include <iostream>
-#include "pilha.hpp"
+#include "fila.hpp"
 
 using namespace std;
 
-Pilha::Pilha()
+Fila::Fila()
 {
     cout << "Construindo objeto...\n";
     lista_caracteres[capacidade] = {};
-    tamanho = 0;
+    tamanho = -1;
     esta_vazio = true;
+    index_inicio = 0;
+    valor_proximo = ' ';
 }
-Pilha::~Pilha()
+Fila::~Fila()
 {
     cout << "Destruindo objeto...\n";
 }
-bool Pilha::vazio()
+bool Fila::vazio()
 {
-    if (tamanho == 0)
+    if (tamanho <= 0)
     {
         esta_vazio = true;
         return true;
@@ -26,7 +28,7 @@ bool Pilha::vazio()
         return false;
     }
 }
-bool Pilha::cheio()
+bool Fila::cheio()
 {
     if (tamanho > 0)
     {
@@ -38,41 +40,43 @@ bool Pilha::cheio()
         return false;
     }
 }
-void Pilha::empilhar(char valor)
+void Fila::enfileirar(char valor)
 {
     if (tamanho == capacidade)
     {
-        cout << "A pilha está totalmente preenchida.";
+        cout << "A Fila está totalmente preenchida.\n";
         return;
     }
     else
     {
         tamanho++;
         lista_caracteres[tamanho] = valor;
-        valor_topo = lista_caracteres[tamanho];
+        valor_proximo = lista_caracteres[index_inicio];
+        esta_vazio = false;
     }
 }
-void Pilha::desempilhar()
+void Fila::desenfileirar()
 {
-    if (tamanho == 0)
+    if (tamanho <= 0)
     {
-        cout << "A pilha está vazia.\n";
+        cout << "A Fila está vazia.\n";
     }
     else
     {
         tamanho--;
-        valor_topo = lista_caracteres[tamanho];
+        index_inicio++;
+        valor_proximo = lista_caracteres[index_inicio];
     }
 }
-char Pilha::topo()
+char Fila::proximo()
 {
-    if (!esta_vazio)
+    if (esta_vazio)
     {
-        cout << "A pilha esta vazia\n";
+        cout << "A Fila esta vazia\n";
         return ' ';
     }
     else
     {
-        return valor_topo;
+        return valor_proximo;
     }
 }
