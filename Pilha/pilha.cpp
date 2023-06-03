@@ -40,6 +40,9 @@ bool Pilha::cheio()
 }
 void Pilha::empilhar(char valor)
 {
+    cout << "Empilhando elemento " << valor << "..." << endl;
+
+    esta_vazio = false;
     if (tamanho == capacidade)
     {
         cout << "A pilha está totalmente preenchida.";
@@ -54,6 +57,7 @@ void Pilha::empilhar(char valor)
 }
 void Pilha::desempilhar()
 {
+    cout << "Desempilhando elemento " << lista_caracteres[tamanho] << "..." << endl;
     if (tamanho == 0)
     {
         cout << "A pilha está vazia.\n";
@@ -62,11 +66,13 @@ void Pilha::desempilhar()
     {
         tamanho--;
         valor_topo = lista_caracteres[tamanho];
+        // Verificar a pilha foi esvaziada
+        Pilha::vazio();
     }
 }
 char Pilha::topo()
 {
-    if (!esta_vazio)
+    if (esta_vazio)
     {
         cout << "A pilha esta vazia\n";
         return ' ';
