@@ -84,8 +84,8 @@ char Pilha::topo()
 {
     if (esta_vazio)
     {
-        cout << "A pilha esta vazia\n";
-        return ' ';
+        cout << "A fila esta vazia\n";
+        return valor_topo;
     }
     else
     {

@@ -7,13 +7,25 @@ int main()
 {
     Fila fila = Fila();
 
+    // 1 = true | 0 = false
+
+    cout << "Está vazia? " << fila.vazio() << endl;
+
     fila.enfileirar('g');
     fila.enfileirar('u');
     fila.enfileirar('i');
     fila.desenfileirar();
-    cout << "Está vazia? " << fila.vazio() << endl;
-    cout << "Próximo elemento da fila " << fila.proximo() << endl;
-    cout << "Está cheia? " << fila.cheio() << endl;
+
+    cout << "Agora está vazia? " << fila.vazio() << endl;
+    cout << "Mas está cheia? " << fila.cheio() << endl;
+    cout << "Próximo elemento da fila: " << fila.proximo() << endl;
+    fila.desenfileirar();
+    cout << "Agora o próximo elemento da fila é: " << fila.proximo() << endl;
+
+    cout << "Desenfileirando elementos restantes..." << endl;
+    fila.desenfileirar();
+
+    cout << "Agora o próximo elemento da fila é: " << fila.proximo() << endl;
 
     return 0;
 }

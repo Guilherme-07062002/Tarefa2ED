@@ -5,7 +5,7 @@ using namespace std;
 
 Fila::Fila()
 {
-    cout << "Construindo objeto...\n";
+    cout << "Construindo objeto...\n\n";
     lista_caracteres[capacidade] = {};
     tamanho = -1;
     esta_vazio = true;
@@ -14,11 +14,11 @@ Fila::Fila()
 }
 Fila::~Fila()
 {
-    cout << "Destruindo objeto...\n";
+    cout << "\nDestruindo objeto...\n";
 }
 bool Fila::vazio()
 {
-    if (tamanho <= 0)
+    if (tamanho <= -1)
     {
         esta_vazio = true;
         return true;
@@ -30,7 +30,7 @@ bool Fila::vazio()
 }
 bool Fila::cheio()
 {
-    if (tamanho > 0)
+    if (tamanho == capacidade)
     {
         esta_vazio = false;
         return true;
@@ -42,8 +42,8 @@ bool Fila::cheio()
 }
 void Fila::enfileirar(char valor)
 {
-    cheio();
-    if (tamanho == capacidade)
+    esta_vazio = false;
+    if (cheio())
     {
         cout << "A Fila está totalmente preenchida.\n";
         return;
@@ -54,19 +54,17 @@ void Fila::enfileirar(char valor)
         tamanho++;
         lista_caracteres[tamanho] = valor;
         valor_proximo = lista_caracteres[index_inicio];
-        esta_vazio = false;
     }
 }
 void Fila::desenfileirar()
 {
-
-    if (tamanho <= 0)
+    if (tamanho <= -1)
     {
         cout << "A Fila está vazia.\n";
     }
     else
     {
-        cout << "Desenfileirando elemento " << lista_caracteres[tamanho] << "..." << endl;
+        cout << "Desenfileirando elemento " << lista_caracteres[index_inicio] << "..." << endl;
         tamanho--;
         index_inicio++;
         if (tamanho >= 0)
@@ -76,7 +74,7 @@ void Fila::desenfileirar()
         else
         {
             vazio();
-            cout << "Agora Não há mais nenhum elemento na fila";
+            cout << "Agora Não há mais nenhum elemento na fila" << endl;
             valor_proximo = ' ';
         }
     }
@@ -85,8 +83,8 @@ char Fila::proximo()
 {
     if (esta_vazio)
     {
-        cout << "A Fila esta vazia\n";
-        return ' ';
+        cout << "A pilha esta vazia\n";
+        return valor_proximo;
     }
     else
     {
