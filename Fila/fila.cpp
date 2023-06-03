@@ -42,6 +42,7 @@ bool Fila::cheio()
 }
 void Fila::enfileirar(char valor)
 {
+    cheio();
     if (tamanho == capacidade)
     {
         cout << "A Fila está totalmente preenchida.\n";
@@ -49,6 +50,7 @@ void Fila::enfileirar(char valor)
     }
     else
     {
+        cout << "Enfileirando elemento " << valor << "..." << endl;
         tamanho++;
         lista_caracteres[tamanho] = valor;
         valor_proximo = lista_caracteres[index_inicio];
@@ -57,15 +59,26 @@ void Fila::enfileirar(char valor)
 }
 void Fila::desenfileirar()
 {
+
     if (tamanho <= 0)
     {
         cout << "A Fila está vazia.\n";
     }
     else
     {
+        cout << "Desenfileirando elemento " << lista_caracteres[tamanho] << "..." << endl;
         tamanho--;
         index_inicio++;
-        valor_proximo = lista_caracteres[index_inicio];
+        if (tamanho >= 0)
+        {
+            valor_proximo = lista_caracteres[index_inicio];
+        }
+        else
+        {
+            vazio();
+            cout << "Agora Não há mais nenhum elemento na fila";
+            valor_proximo = ' ';
+        }
     }
 }
 char Fila::proximo()

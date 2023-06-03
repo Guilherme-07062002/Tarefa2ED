@@ -5,7 +5,7 @@ using namespace std;
 
 Pilha::Pilha()
 {
-    cout << "Construindo objeto...\n";
+    cout << "Construindo objeto...\n\n";
     lista_caracteres[capacidade] = {};
     tamanho = 0;
     esta_vazio = true;
@@ -28,7 +28,8 @@ bool Pilha::vazio()
 }
 bool Pilha::cheio()
 {
-    if (tamanho > 0)
+    // A pilha so estará cheia quando preencher completamente a sua capacidade
+    if (tamanho == capacidade)
     {
         esta_vazio = false;
         return true;
@@ -57,17 +58,26 @@ void Pilha::empilhar(char valor)
 }
 void Pilha::desempilhar()
 {
-    cout << "Desempilhando elemento " << lista_caracteres[tamanho] << "..." << endl;
+
     if (tamanho == 0)
     {
         cout << "A pilha está vazia.\n";
     }
     else
     {
+        cout << "Desempilhando elemento " << lista_caracteres[tamanho] << "..." << endl;
         tamanho--;
-        valor_topo = lista_caracteres[tamanho];
-        // Verificar a pilha foi esvaziada
-        Pilha::vazio();
+        if (tamanho > 0)
+        {
+            valor_topo = lista_caracteres[tamanho];
+        }
+        else
+        {
+            // Verificar se a pilha foi esvaziada
+            vazio();
+            cout << "Agora não há mais nenhum elemento na pilha" << endl;
+            valor_topo = ' ';
+        }
     }
 }
 char Pilha::topo()
